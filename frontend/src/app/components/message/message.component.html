@@ -1,0 +1,7 @@
+<div *ngIf="!message.fromUser" class="tail left"></div>
+<div class="message" 
+    [style]="message.fromUser ? 'border-bottom-left-radius: 4px; margin-left: auto;' : 'border-bottom-right-radius: 4px'">
+    <p class='content' [innerHtml]="message.message"></p>
+    <p class='date'>{{ message.sendTime | date:'HH:mm MMM dd' }}</p>
+</div>
+<div *ngIf="message.fromUser" class="tail right"></div>

@@ -1,0 +1,10 @@
+<mat-form-field appearance="outline">
+    <input matInput [formControl]="input" type="text">
+</mat-form-field>
+<button 
+    mat-icon-button
+    [disabled]="input.value == null || input.value === ''"
+    (click)="sendMessage()">
+    <mat-icon>send</mat-icon>
+</button>
+

@@ -1,0 +1,31 @@
+:host {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+mat-form-field {
+    flex-grow: 1;
+}
+
+::ng-deep  .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0.5rem 0
+}
+
+.mat-icon-button {
+    width: 40px;
+    height: 40px;
+    background: #3f51b5;
+    border-radius: 10px;
+}
+
+.mat-icon-button:not(.mat-button-disabled) .mat-icon {
+    color: #fff;
+    line-height: 22px;
+}
