@@ -3,7 +3,7 @@
 ## Author: Rosca Alexandru, Group: FAF-193
 
 ### Description
-This project allows to access Rest Api of the FTX cryptocurrency platform using a chatbot interface.
+This project allows to access Rest Api of the [FTX](https://docs.ftx.com/#overview) cryptocurrency platform using a chatbot interface.
 
 It uses websockets to link backend and frontend application and a rest client to access the actual api.
 
