@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SocketService } from 'src/app/services/socket.service';
 
@@ -8,6 +8,7 @@ import { SocketService } from 'src/app/services/socket.service';
   styleUrls: ['./chat-input.component.css']
 })
 export class ChatInputComponent implements OnInit {
+
   input: FormControl = new FormControl();
 
   constructor(private socketService: SocketService) {

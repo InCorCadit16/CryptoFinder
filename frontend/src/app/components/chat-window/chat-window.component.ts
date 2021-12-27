@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
@@ -8,9 +8,15 @@ import { SocketService } from 'src/app/services/socket.service';
 })
 export class ChatWindowComponent implements OnInit {
 
-  constructor(public socketService: SocketService) { }
+  constructor(
+    private el: ElementRef,
+    public socketService: SocketService
+  ) { }
 
   ngOnInit(): void {
+    this.socketService.newMessage$.subscribe(msg => {
+      setTimeout(() => this.el.nativeElement.scrollBy({ top: this.el.nativeElement.scrollTopMax }), 1);
+    });
   }
 
 }

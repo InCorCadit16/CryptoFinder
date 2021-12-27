@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable } from "rxjs";
 import { io } from "socket.io-client";
 import { Message } from "../models/message.model";
 
@@ -6,6 +7,8 @@ import { Message } from "../models/message.model";
 export class SocketService {
     socket = io('http://localhost:5000');
     messages: Message[] = []
+    private newMessage: BehaviorSubject<Message|null> = new BehaviorSubject<Message|null>(null);
+    newMessage$: Observable<Message|null> = this.newMessage.asObservable();
 
     constructor() {
         this.socket.on('connect', () => {
@@ -13,11 +16,15 @@ export class SocketService {
         })
 
         this.socket.on('message', (message: string) => {
-            this.messages.push({
+            const msg = {
                 fromUser: false,
                 message,
                 sendTime: new Date()
-            });
+            };
+
+
+            this.messages.push(msg);
+            this.newMessage.next(msg);
         })
     }
 
