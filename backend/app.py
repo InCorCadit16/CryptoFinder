@@ -16,18 +16,23 @@ ftx_client = FtxClient(
 @socketio.on('message')
 def handle_message(req):
 
-    if req == 'connected' or req == '/help':
-        connected()
-    elif req.startswith('/markets'):
-        markets(req)
-    elif req.startswith('/market'):
-        market_info(req.split(' ')[1])
-    elif req.startswith('/orders'):
-        orders(req.split(' ')[1])
-    elif req.startswith('/trades'):
-        trades(req.split(' ')[1])
-    else:
-        unknown_command()
+    try:
+        if req == 'connected' or req == '/help':
+            connected()
+        elif req.startswith('/markets'):
+            markets(req)
+        elif req.startswith('/market'):
+            market_info(req.split(' ')[1])
+        elif req.startswith('/orders'):
+            orders(req.split(' ')[1])
+        elif req.startswith('/trades'):
+            trades(req.split(' ')[1])
+        else:
+            unknown_command()
+    except StopIteration as ex:
+        send('Cannot find element you\'re searching for.')
+    except Exception as ex:
+        send(ex.__str__())
 
 
 def connected():
@@ -56,6 +61,10 @@ def markets(req):
         mark = list(mark)[:int(params[1])]
 
     mark = list(f'{m["name"]}: {m["price"]}' for m in mark)
+    if len(mark) == 0:
+        send('No entries for this search. Try something else.')
+        return
+
     send('<br>'.join(mark))
 
 
