@@ -29,7 +29,10 @@ def handshake(socket):
 
 
 def receive(size, socket):
-    recv_data = socket.recv(size)
+    try:
+        recv_data = socket.recv(size)
+    except ConnectionAbortedError:
+        return False
 
     if not recv_data:
         return False
