@@ -1,0 +1,9 @@
+{
+    "/chat": {
+        "target": "ws://localhost:3120",
+        "secure": false,
+        "logLevel": "debug",
+        "ws": true,
+        "changeOrigin": true
+    }
+}
